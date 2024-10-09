@@ -1,0 +1,1382 @@
+{
+	"info": {
+		"_postman_id": "d43ed65b-4fb3-4757-ab0b-cdff9e1e9ef5",
+		"name": "Project #2 - Restful Booker APIs",
+		"description": "StartFragment\n\n# Welcome to Restful-Booker\n\nAn API playground created by [Mark Winteringham](http://mwtestconsultancy.co.uk/) for those wanting to learn more about API testing and tools\n\n[2bittester](https://twitter.com/2bittester) | [Website](http://mwtestconsultancy.co.uk/) | [Code](https://github.com/mwinteringham/restful-booker) | [API Docs](https://restful-booker.herokuapp.com/apidoc/index.html)\n\nWelcome to Restful-booker an API that you can use to learn more about API Testing or try out API testing tools against. Restful-booker is a Create Read Update Delete Web API that comes with authentication features and loaded with a bunch of bugs for you to explore. The API comes pre-loaded with 10 records for you to work with and resets itself every 10 minutes back to that default state. Restful-booker also comes with [detailed API documentation](https://restful-booker.herokuapp.com/apidoc/index.html) to help get you started with your API testing straight away.\n\nEndFragment\n\n[https://restful-booker.herokuapp.com/apidoc/index.html](https://restful-booker.herokuapp.com/apidoc/index.html)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37267284"
+	},
+	"item": [
+		{
+			"name": "Create Booking",
+			"item": [
+				{
+					"name": "TC -1 Create Booking Positive Flow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true,
+							"host": true,
+							"content-length": true,
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Ankit\",\r\n    \"lastname\" : \"Rawat\",\r\n    \"totalprice\" : 500,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\": {\r\n        \"checkin\" : \"2024-01-01\",\r\n        \"checkout\" :\"2024-01-05\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n    \r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "TC2- Create Booking - Curl",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Ankit\",\r\n    \"lastname\" : \"Rawat\",\r\n    \"totalprice\" : 500,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\": {\r\n        \"checkin\" : \"2024-01-01\",\r\n        \"checkout\" :\"2024-01-05\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n    \r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking"
+							]
+						},
+						"description": "Generated from cURL: curl -X POST \\\r\n  https://restful-booker.herokuapp.com/booking \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n    \"firstname\" : \"Jim\",\r\n    \"lastname\" : \"Brown\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2018-01-01\",\r\n        \"checkout\" : \"2019-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping_healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/ping",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ping"
+					]
+				},
+				"description": "Generated from cURL: curl -i https://restful-booker.herokuapp.com/ping"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth_CreateToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"    \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+							"    \"$id\": \"http://example.com/example.json\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"default\": {},\r",
+							"    \"title\": \"Root Schema\",\r",
+							"    \"required\": [\r",
+							"        \"token\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"token\": {\r",
+							"            \"type\": \"string\",\r",
+							"            \"default\": \"\",\r",
+							"            \"title\": \"The token Schema\",\r",
+							"            \"examples\": [\r",
+							"                \"5478cd1596f67c9\"\r",
+							"            ]\r",
+							"        }\r",
+							"    },\r",
+							"    \"examples\": [{\r",
+							"        \"token\": \"5478cd1596f67c9\"\r",
+							"    }]\r",
+							"}\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.expect(tv4.validate(pm.response.json, schema)).to.be.true;    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/auth",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"auth"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \\\r\n  https://restful-booker.herokuapp.com/auth \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Bookings_Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"    \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+							"    \"$id\": \"http://example.com/example.json\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"default\": [],\r",
+							"    \"title\": \"Root Schema\",\r",
+							"    \"items\": {\r",
+							"        \"type\": \"object\",\r",
+							"        \"title\": \"A Schema\",\r",
+							"        \"required\": [\r",
+							"            \"bookingid\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"bookingid\": {\r",
+							"                \"type\": \"integer\",\r",
+							"                \"title\": \"The bookingid Schema\",\r",
+							"                \"examples\": [\r",
+							"                    4,\r",
+							"                    34,\r",
+							"                    145,\r",
+							"                    90,\r",
+							"                    41,\r",
+							"                    35,\r",
+							"                    127,\r",
+							"                    139,\r",
+							"                    138,\r",
+							"                    25,\r",
+							"                    108,\r",
+							"                    21,\r",
+							"                    51,\r",
+							"                    69,\r",
+							"                    130,\r",
+							"                    149,\r",
+							"                    131,\r",
+							"                    17,\r",
+							"                    76,\r",
+							"                    18,\r",
+							"                    92,\r",
+							"                    14,\r",
+							"                    141,\r",
+							"                    105,\r",
+							"                    137,\r",
+							"                    104,\r",
+							"                    93,\r",
+							"                    27,\r",
+							"                    10,\r",
+							"                    2,\r",
+							"                    114,\r",
+							"                    58,\r",
+							"                    29,\r",
+							"                    155,\r",
+							"                    144,\r",
+							"                    13,\r",
+							"                    77,\r",
+							"                    22,\r",
+							"                    121,\r",
+							"                    20,\r",
+							"                    78,\r",
+							"                    118,\r",
+							"                    53,\r",
+							"                    1,\r",
+							"                    24,\r",
+							"                    143,\r",
+							"                    95,\r",
+							"                    9,\r",
+							"                    36,\r",
+							"                    52,\r",
+							"                    124,\r",
+							"                    111,\r",
+							"                    60,\r",
+							"                    49,\r",
+							"                    72,\r",
+							"                    66,\r",
+							"                    63,\r",
+							"                    81,\r",
+							"                    48,\r",
+							"                    126,\r",
+							"                    38,\r",
+							"                    106,\r",
+							"                    7,\r",
+							"                    97,\r",
+							"                    12,\r",
+							"                    46,\r",
+							"                    32,\r",
+							"                    15,\r",
+							"                    123,\r",
+							"                    16,\r",
+							"                    43,\r",
+							"                    113,\r",
+							"                    11,\r",
+							"                    67,\r",
+							"                    75,\r",
+							"                    117,\r",
+							"                    99,\r",
+							"                    83,\r",
+							"                    146,\r",
+							"                    129,\r",
+							"                    87,\r",
+							"                    39,\r",
+							"                    50,\r",
+							"                    98,\r",
+							"                    150,\r",
+							"                    132,\r",
+							"                    59,\r",
+							"                    82,\r",
+							"                    3,\r",
+							"                    116,\r",
+							"                    88,\r",
+							"                    37,\r",
+							"                    8,\r",
+							"                    134,\r",
+							"                    47,\r",
+							"                    110,\r",
+							"                    5,\r",
+							"                    73,\r",
+							"                    84,\r",
+							"                    156,\r",
+							"                    119,\r",
+							"                    70,\r",
+							"                    45,\r",
+							"                    64,\r",
+							"                    30,\r",
+							"                    100,\r",
+							"                    28,\r",
+							"                    152,\r",
+							"                    96,\r",
+							"                    19,\r",
+							"                    55,\r",
+							"                    57,\r",
+							"                    23,\r",
+							"                    26,\r",
+							"                    151,\r",
+							"                    101,\r",
+							"                    6\r",
+							"                ]\r",
+							"            }\r",
+							"        },\r",
+							"        \"examples\": [{\r",
+							"            \"bookingid\": 4\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 34\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 145\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 90\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 41\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 35\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 127\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 139\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 138\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 25\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 108\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 21\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 51\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 69\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 130\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 149\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 131\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 17\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 76\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 18\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 92\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 14\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 141\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 105\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 137\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 104\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 93\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 27\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 10\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 2\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 114\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 58\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 29\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 155\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 144\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 13\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 77\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 22\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 121\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 20\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 78\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 118\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 53\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 1\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 24\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 143\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 95\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 9\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 36\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 52\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 124\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 111\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 60\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 49\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 72\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 66\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 63\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 81\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 48\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 126\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 38\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 106\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 7\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 97\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 12\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 46\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 32\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 15\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 123\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 16\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 43\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 113\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 11\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 67\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 75\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 117\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 99\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 83\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 146\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 129\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 87\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 39\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 50\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 98\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 150\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 132\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 59\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 82\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 3\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 116\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 88\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 37\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 8\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 134\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 47\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 110\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 5\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 73\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 84\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 156\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 119\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 70\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 45\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 64\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 30\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 100\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 28\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 152\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 96\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 19\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 55\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 57\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 23\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 26\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 151\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 101\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 6\r",
+							"        }]\r",
+							"    },\r",
+							"    \"examples\": [\r",
+							"        [{\r",
+							"            \"bookingid\": 4\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 34\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 145\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 90\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 41\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 35\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 127\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 139\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 138\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 25\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 108\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 21\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 51\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 69\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 130\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 149\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 131\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 17\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 76\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 18\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 92\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 14\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 141\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 105\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 137\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 104\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 93\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 27\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 10\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 2\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 114\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 58\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 29\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 155\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 144\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 13\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 77\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 22\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 121\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 20\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 78\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 118\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 53\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 1\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 24\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 143\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 95\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 9\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 36\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 52\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 124\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 111\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 60\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 49\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 72\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 66\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 63\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 81\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 48\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 126\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 38\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 106\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 7\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 97\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 12\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 46\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 32\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 15\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 123\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 16\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 43\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 113\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 11\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 67\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 75\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 117\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 99\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 83\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 146\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 129\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 87\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 39\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 50\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 98\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 150\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 132\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 59\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 82\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 3\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 116\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 88\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 37\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 8\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 134\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 47\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 110\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 5\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 73\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 84\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 156\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 119\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 70\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 45\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 64\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 30\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 100\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 28\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 152\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 96\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 19\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 55\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 57\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 23\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 26\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 151\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 101\r",
+							"        },\r",
+							"        {\r",
+							"            \"bookingid\": 6\r",
+							"        }]\r",
+							"    ]\r",
+							"}\r",
+							"\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					]
+				},
+				"description": "Generated from cURL: curl -i https://restful-booker.herokuapp.com/booking"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_booking_id_by_name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking?firstname=Jim&lastname=Jones",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Jim"
+						},
+						{
+							"key": "lastname",
+							"value": "Jones"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -i https://restful-booker.herokuapp.com/booking?firstname=sally&lastname=brown"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_booking_ID_by_ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/1225",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"1225"
+					]
+				},
+				"description": "Generated from cURL: curl -i https://restful-booker.herokuapp.com/booking/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_booking_id_by_checkin_checkout_dates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking?checkin=2018-09-01&checkout=2021-11-15",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					],
+					"query": [
+						{
+							"key": "checkin",
+							"value": "2018-09-01"
+						},
+						{
+							"key": "checkout",
+							"value": "2021-11-15"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -i https://restful-booker.herokuapp.com/booking?checkin=2014-03-13&checkout=2014-05-21"
+			},
+			"response": []
+		},
+		{
+			"name": "update_booking",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "token=deff977a7835ad9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"James\",\r\n    \"lastname\" : \"Brown\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2018-01-01\",\r\n        \"checkout\" : \"2019-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast Not needed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/1225",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"1225"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT \\\r\n  https://restful-booker.herokuapp.com/booking/1 \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'Accept: application/json' \\\r\n  -H 'Cookie: token=abc123' \\\r\n  -d '{\r\n    \"firstname\" : \"James\",\r\n    \"lastname\" : \"Brown\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2018-01-01\",\r\n        \"checkout\" : \"2019-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Partial_update_booking",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "token=deff977a7835ad9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"Sri\",\r\n    \"lastname\" : \"Valli\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/1225",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"1225"
+					]
+				},
+				"description": "Generated from cURL: curl -X PATCH \\\r\n  https://restful-booker.herokuapp.com/booking/1 \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'Accept: application/json' \\\r\n  -H 'Cookie: token=abc123' \\\r\n  -d '{\r\n    \"firstname\" : \"James\",\r\n    \"lastname\" : \"Brown\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_booking",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "token=5ee52c10c9457d4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/1",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"1"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE \\\r\n  https://restful-booker.herokuapp.com/booking/1 \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'Cookie: token=abc123'"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
